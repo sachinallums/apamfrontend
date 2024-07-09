@@ -1,11 +1,12 @@
 import React from 'react';
 
-const HomePage = ({ onStartNewSession }) => {
+
+const HomePage = ({ onStartNewSession, currentSkill }) => {
     return (
         <div className="home-page">
             <h1>Home Page Directions</h1>
             <p>
-                You will be interacting with a chat bot for four different simulations to practice your <strong>active listening skills</strong>.
+                You will be interacting with a chat bot for four different simulations to practice your <strong>{currentSkill} skills</strong>.
                 In each simulation, you will be trying to meet a certain learning goal defined on the top of the screen.
             </p>
             <p>
@@ -18,6 +19,7 @@ const HomePage = ({ onStartNewSession }) => {
                 chatted with an agent before, so only click this button if you are ready to begin the simulations again from the beginning.
             </p>
             <button onClick={onStartNewSession}>Start New Session</button>
+            <button>Back to Select Skills</button>
         </div>
     );
 }
