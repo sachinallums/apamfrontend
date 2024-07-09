@@ -14,9 +14,6 @@ const Sidebar = ({ items, onNavigate }) => {
             {index + 1}
           </div>
         ))}
-        <div className="sidebar-finish">
-            <button>Finish!</button>
-        </div>
       </div>
     );
   };

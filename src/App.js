@@ -2,37 +2,38 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import HomePage from './HomePage';
 import ChatInterface from './ChatInterface';
-// import StartPage from './StartPage'; // Import StartPage component
 import './App.css';
+import StartPage from './StartPage';
 
 const App = () => {
-    const [page, setPage] = useState('home');
+    const [page, setPage] = useState('start');
+    const [currentSkill, setCurrentSkill] = useState({ name: 'active listening', scenarios: [] });
+    const [scenarios, setScenarios] = useState([]);
 
     const handleNavigate = (page) => {
         setPage(page);
     }
 
-    const currentSkill = "active listening";
-    const scenarios = ["scenario1", "scenario2"];
-
+    const handleSelectSkill = (skill) => {
+        setCurrentSkill(skill);
+        setScenarios(skill.scenarios);
+    }
 
     const handleStartNewSession = () => {
         setPage('chat1');
-        // insert code here to get more information from the code about the session
     }
 
+    // Define pages where sidebar should be hidden
+    const pagesWithHiddenSidebar = ['start'];
 
     return (
-        /* 
-        The following code is set up to make the lefthand navigation menu change 
-        dynamically based on the number of items in the scenario list.
-        */ 
         <div className="app">
-            <Sidebar items={scenarios} onNavigate={handleNavigate} />
+            {!pagesWithHiddenSidebar.includes(page) && <Sidebar items={scenarios} onNavigate={handleNavigate} />}
             <div className="content">
-                {page === 'home' && <HomePage onStartNewSession={handleStartNewSession} currentSkill={currentSkill}/>}                
+                {page === 'start' && <StartPage onNavigate={handleNavigate} onSelectSkill={handleSelectSkill} />}
+                {page === 'home' && <HomePage scenarios={scenarios} onStartNewSession={handleStartNewSession} currentSkill={currentSkill.name} onNavigate={handleNavigate} />}                
                 {scenarios.length > 0 && scenarios.map((scenario, index) => (
-                    page === `chat${index + 1}` && <ChatInterface key={index} currentSkill={currentSkill} />
+                    page === `chat${index + 1}` && <ChatInterface onNavigate={handleNavigate} key={index} currentSkill={currentSkill.name} />
                 ))}
             </div>
         </div>
