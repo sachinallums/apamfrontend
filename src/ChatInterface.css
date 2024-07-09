@@ -43,3 +43,41 @@
     border-radius: 0 5px 5px 0;
     cursor: pointer;
 }
+
+.feedback-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+}
+
+.feedback-header {
+    background-color: #e1e1e1;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: inline-block; /* Ensure it takes only as much width as necessary */
+    text-align: center;
+    border-radius: 5px; /* Rounded corners */
+}
+
+.feedback-content {
+    padding: 5px;
+    text-align: center; /* Center text content */
+}
+
+.show-feedback-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+}
+
+.show-feedback-button {
+    background-color: #e1e1e1;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: inline-block; /* Ensure it takes only as much width as necessary */
+    text-align: center;
+    border-radius: 5px; /* Rounded corners */
+}

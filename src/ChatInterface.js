@@ -4,6 +4,7 @@ import './ChatInterface.css';
 const ChatInterface = ({ currentSkill, currentScenario, onNavigate }) => {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
+    const [feedbackVisible, setFeedbackVisible] = useState(true); // State to handle feedback visibility
     const chatBoxRef = useRef(null);
 
     useEffect(() => {
@@ -56,6 +57,10 @@ const ChatInterface = ({ currentSkill, currentScenario, onNavigate }) => {
         }
     };
 
+    const toggleFeedbackVisibility = () => { // Function to toggle feedback visibility
+        setFeedbackVisible(!feedbackVisible);
+    };
+
     return (
         <div className="chat-interface">
             <button onClick={handleBackToSelectSkills} className="back-button">Back</button>
@@ -77,6 +82,20 @@ const ChatInterface = ({ currentSkill, currentScenario, onNavigate }) => {
                     </div>
                 ))}
             </div>
+            {feedbackVisible ? (
+                <div className="feedback-container">
+                    <button className="feedback-header" onClick={toggleFeedbackVisibility}>
+                        Hide Suggestions
+                    </button>
+                    <div className="feedback-content">
+                        Try using a strategy you haven’t used before like <strong>affirming</strong> or <strong>empathizing</strong>! Click on a strategy to learn more.
+                    </div>
+                </div>
+            ) : (
+                <div className="show-feedback-container">
+                    <button onClick={toggleFeedbackVisibility} className="show-feedback-button">Show Suggestions</button>
+                </div>
+            )}
             <div className="input-box">
                 <input
                     type="text"
